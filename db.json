@@ -15,25 +15,11 @@
       "role": "admin"
     },
     {
-      "name": "Akilash",
-      "email": "ak@in.com",
-      "phone": "789900",
-      "role": "staff",
-      "id": 4
-    },
-    {
-      "id": 5,
-      "name": "test",
-      "email": "test@gmail.com",
-      "phone": "900000222",
+      "id": 4,
+      "name": "Test1",
+      "email": "test@tet.com",
+      "phone": "123753951852",
       "role": "staff"
-    },
-    {
-      "name": "Admin",
-      "email": "a@fgm.com",
-      "phone": "848941",
-      "role": "admin",
-      "id": 6
     }
   ]
 }
