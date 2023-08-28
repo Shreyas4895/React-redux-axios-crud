@@ -6,19 +6,19 @@
   height: 40vmin;
   pointer-events: none;
 }
-.header{
+.header {
   width: 100%;
   background-color: blue;
   color: #fff;
   padding: 1%;
   text-align: left;
 }
-a{
+a {
   text-decoration: none !important;
   color: white !important;
   padding: 2px;
 }
-.card-header{
+.card-header {
   text-align: right;
 }
 
