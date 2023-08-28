@@ -4,21 +4,31 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { FetchUserObj, FunctionUpdateUser } from "../Redux/Action";
 
 const Updateuser = () => {
-  const [id, idchange] = useState(0);
-  const [name, namechange] = useState("");
-  const [email, emailchange] = useState("");
-  const [phone, phonechange] = useState("");
-  const [role, rolechange] = useState("staff");
+  const [userData, setUserData] = useState({
+    id: 0,
+    name: "",
+    email: "",
+    phone: "",
+    role: "staff",
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { code } = useParams();
 
   const userobj = useSelector((state) => state.user.userobj);
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      [name]: value,
+    }));
+  };
+
   const handlesubmit = (e) => {
     e.preventDefault();
-    const userobj = { id, name, email, phone, role };
-    dispatch(FunctionUpdateUser(userobj, id));
+    dispatch(FunctionUpdateUser(userData, userData.id));
     navigate("/user");
   };
 
@@ -28,11 +38,7 @@ const Updateuser = () => {
 
   useEffect(() => {
     if (userobj) {
-      idchange(userobj.id);
-      namechange(userobj.name);
-      emailchange(userobj.email);
-      phonechange(userobj.phone);
-      rolechange(userobj.role);
+      setUserData(userobj);
     }
   }, [userobj]);
 
@@ -41,7 +47,7 @@ const Updateuser = () => {
       <form onSubmit={handlesubmit}>
         <div className="card">
           <div className="card-header" style={{ textAlign: "left" }}>
-            <h2>Add User</h2>
+            <h2>Edit User</h2>
           </div>
           <div className="card-body" style={{ textAlign: "left" }}>
             <div className="row">
@@ -49,8 +55,9 @@ const Updateuser = () => {
                 <div className="form-group">
                   <label>Id</label>
                   <input
-                    value={id || ""}
-                    disabled="disabled"
+                    name="id"
+                    value={userData.id}
+                    disabled
                     className="form-control"
                   ></input>
                 </div>
@@ -59,8 +66,9 @@ const Updateuser = () => {
                 <div className="form-group">
                   <label>Name</label>
                   <input
-                    value={name || ""}
-                    onChange={(e) => namechange(e.target.value)}
+                    name="name"
+                    value={userData.name}
+                    onChange={handleChange}
                     className="form-control"
                   ></input>
                 </div>
@@ -69,8 +77,9 @@ const Updateuser = () => {
                 <div className="form-group">
                   <label>Email</label>
                   <input
-                    value={email || ""}
-                    onChange={(e) => emailchange(e.target.value)}
+                    name="email"
+                    value={userData.email}
+                    onChange={handleChange}
                     className="form-control"
                   ></input>
                 </div>
@@ -79,8 +88,9 @@ const Updateuser = () => {
                 <div className="form-group">
                   <label>Phone</label>
                   <input
-                    value={phone || ""}
-                    onChange={(e) => phonechange(e.target.value)}
+                    name="phone"
+                    value={userData.phone}
+                    onChange={handleChange}
                     className="form-control"
                   ></input>
                 </div>
@@ -89,8 +99,9 @@ const Updateuser = () => {
                 <div className="form-group">
                   <label>Role</label>
                   <select
-                    value={role || ""}
-                    onChange={(e) => rolechange(e.target.value)}
+                    name="role"
+                    value={userData.role}
+                    onChange={handleChange}
                     className="form-control"
                   >
                     <option value="admin">Admin</option>

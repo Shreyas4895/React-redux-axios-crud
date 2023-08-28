@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FetchUserList, Removeuser } from "../Redux/Action";
 
-const Userlisting = (props) => {
+const Userlisting = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -64,9 +64,7 @@ const Userlisting = (props) => {
                       </Link>{" "}
                       |
                       <button
-                        onClick={() => {
-                          handledelete(item.id);
-                        }}
+                        onClick={() => handledelete(item.id)}
                         className="btn btn-danger"
                       >
                         Delete
